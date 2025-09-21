@@ -102,9 +102,59 @@ def divide_students(students):
 
 divide_students(students)
 
+# zip:
+# birbirinden farklı tipdeki listeleri bir arada değerlendirme imkanı sağlar
+# bir liste içerisinde tuple şeklinde birbirinden farklı listeleri bir araya getirir
+
+students = ["John", "Mark", "Venessa", "Mariam"]
+
+departments = ["mathematics", "statistics", "physics", "astronomy"]
+
+ages = [23, 30, 26, 22]
+
+x=list(zip(students, departments, ages))
+print(x) # [('John', 'mathematics', 23), ('Mark', 'statistics', 30), ('Venessa', 'physics', 26), ('Mariam', 'astronomy', 22)]
 
 
+###############################################
+# lambda, map, filter, reduce
+###############################################
 
+def summer(a, b):
+    return a + b
+
+summer(1, 3) * 9
+
+new_sum = lambda a, b: a + b
+
+new_sum(4, 5)
+
+# map
+salaries = [1000, 2000, 3000, 4000, 5000]
+
+def new_salary(x):
+    return x * 20 / 100 + x
+
+new_salary(5000)
+
+for salary in salaries:
+    print(new_salary(salary))
+
+list(map(new_salary, salaries))
+
+
+# del new_sum
+list(map(lambda x: x * 20 / 100 + x, salaries))
+list(map(lambda x: x ** 2 , salaries))
+
+# FILTER
+list_store = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+list(filter(lambda x: x % 2 == 0, list_store))
+
+# REDUCE
+from functools import reduce
+list_store = [1, 2, 3, 4]
+reduce(lambda a, b: a + b, list_store)
 
 
 
