@@ -90,15 +90,15 @@ p1("gulsen")
 students=["gulsen","ayse","buse","ayca"]
 
 def divide_students(students):
-   groups=[[], []]
+    groups=[[], []]
     for index,student in enumerate(students):
         if index%2==0:
             groups[0].append(student)
         else:
             groups[1].append(student)
 
-     print(groups)
-     return groups
+    print(groups)
+    return groups
 
 divide_students(students)
 
@@ -155,6 +155,92 @@ list(filter(lambda x: x % 2 == 0, list_store))
 from functools import reduce
 list_store = [1, 2, 3, 4]
 reduce(lambda a, b: a + b, list_store)
+
+
+#compherensions
+salaries = [1000, 2000, 3000, 4000, 5000]
+
+[salary * 2 for salary in salaries]
+[salary * 2 for salary in salaries if salary<3000]
+
+print([salary * 2 if salary<3000 else salary*0 for salary in salaries])
+
+print([new_salary(salary * 2) if salary<3000 else new_salary(salary*0.2) for salary in salaries])
+
+
+students = ["gulsen", "ayse", "buse", "ayca"]
+students_no=["gulsen", "buse"]
+
+print([student.upper() if student in students_no else student.lower() for student in students ])
+
+print([student.lower() if student not in students_no else student.upper() for student in students ])
+
+
+dictionary= {"a":1, "b":2, "c":3, "d":4}
+print(dictionary.keys())
+print(dictionary.values())
+print(dictionary.items())
+
+
+x= {k:v **2 for (k,v) in dictionary.items()}
+print(x)
+x= {k.upper() :v for (k,v) in dictionary.items()}
+print(x)
+x= {k.upper() :v**2 for (k,v) in dictionary.items()}
+print(x)
+
+# çift sayıların karesini alarak sözlüğe ekle
+numbers = range(10)
+new_dict = {}
+
+for n in numbers:
+    if n%2==0:
+        new_dict[n]=n**2
+
+print(new_dict)
+x= {n: n**2 for n in numbers if n % 2==0}
+print(x)
+
+# bir veri setindeki değişken isimlerini değiştirmek
+
+import seaborn as sns # kütüphane import etme
+df = sns.load_dataset("car_crashes")
+df.columns # ilgi df nin değişken isimlerini listeler
+print(df.columns)
+
+A=[]
+for col in df.columns:
+    print(col)
+    A.append(col.upper())
+
+df.columns=A
+print(df.columns)
+
+df = sns.load_dataset("car_crashes")
+df.columns=[col.upper() for col in df.columns]
+print(df.columns)
+
+# İsminde "INS" olan değişkenlerin başına FLAG diğerlerine NO_FLAG eklemek istiyoruz.
+
+# tek if varsa for önce kullanılır
+# if else yapısı varsa for sonda kullanılır
+
+[col for col in df.columns if "INS" in col]
+
+["FLAG_" + col for col in df.columns if "INS" in col]
+
+["FLAG_" + col if "INS" in col else "NO_FLAG_" + col for col in df.columns]
+
+df.columns = ["FLAG_" + col if "INS" in col else "NO_FLAG_" + col for col in df.columns]
+print(df.columns)
+
+
+
+
+df = sns.load_dataset("car_crashes")
+num_cols=[col for col in df.columns if df[col].dtype!="O"]
+print(num_cols)
+
 
 
 
